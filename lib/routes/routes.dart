@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../pages/juros_simples.dart';
+import '../pages/menu.dart';
+
 class AppRoutes {
   static Map<String, Widget Function(BuildContext)> loadRoutes() {
     return {
-      //'/simples': (context) => const JurosSimplesPage(),
+      '/main' : (context) => const CalcMenuPage(),
+      '/simples': (context) => const JurosSimplesPage(),
       //'/composto': (context) => const JurosCompostoPage(),
-      
     };
   }
 

@@ -33,15 +33,17 @@ class _CalcMenuPageState extends State<CalcMenuPage> {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: ElevatedButton(
-                onPressed: () {},
-                child: const Text("Calcular Juros simples"),
+                onPressed: () {
+                  Navigator.pushNamed(context, "/simples");
+                },
+                child: const Text("Juros simples"),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: ElevatedButton(
                 onPressed: () {},
-                child: const Text("Calcular Juros compostos"),
+                child: const Text("Juros compostos"),
               ),
             ),
           ],
