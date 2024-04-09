@@ -32,18 +32,31 @@ class _CalcMenuPageState extends State<CalcMenuPage> {
             const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, "/simples");
-                },
-                child: const Text("Juros simples"),
+              child: SizedBox(
+                width:250,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/simples");
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.mainColor,
+                  ),
+                  child: const Text("Juros Simples", style: TextStyle(color:AppColors.textLight),),
+                ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: ElevatedButton(
-                onPressed: () {},
-                child: const Text("Juros compostos"),
+              child: SizedBox(width: 250,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/composto");
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.mainColor,
+                  ),
+                  child: const Text("Juros Compostos", style: TextStyle(color:AppColors.textLight),),
+                ),
               ),
             ),
           ],

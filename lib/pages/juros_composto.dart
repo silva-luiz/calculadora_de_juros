@@ -5,19 +5,19 @@ import 'package:flutter/material.dart';
 
 import '../components/input_decoratin.dart';
 
-class JurosSimplesPage extends StatefulWidget {
-  const JurosSimplesPage({super.key});
+class JurosCompostoPage extends StatefulWidget {
+  const JurosCompostoPage({super.key});
 
   @override
-  State<JurosSimplesPage> createState() => _JurosSimplesPageState();
+  State<JurosCompostoPage> createState() => _JurosCompostoPageState();
 }
 
 TextEditingController _capitalController = TextEditingController();
 TextEditingController _jurosController = TextEditingController();
 TextEditingController _tempoController = TextEditingController();
-//double juros = 0.0;
+TextEditingController _periodoController = TextEditingController();
 
-class _JurosSimplesPageState extends State<JurosSimplesPage> {
+class _JurosCompostoPageState extends State<JurosCompostoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,11 +49,22 @@ class _JurosSimplesPageState extends State<JurosSimplesPage> {
             const SizedBox(
               height: 20,
             ),
-            const Text("Digite o periodo:"),
+            const Text("Digite o tempo:"),
             SizedBox(
               width: 300,
               child: TextField(
                 controller: _tempoController,
+                decoration: getInputDecoration("Periodo(n):"),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const Text("Digite o periodo:"),
+            SizedBox(
+              width: 300,
+              child: TextField(
+                controller: _periodoController,
                 decoration: getInputDecoration("Periodo(n):"),
               ),
             ),
@@ -66,7 +77,7 @@ class _JurosSimplesPageState extends State<JurosSimplesPage> {
                 width: 300,
                 child: ElevatedButton(
                   onPressed: () {
-                    calcularJurosSimples();
+                    calcularJurosCompostos();
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.mainColor,
@@ -85,12 +96,14 @@ class _JurosSimplesPageState extends State<JurosSimplesPage> {
     );
   }
 
-  void calcularJurosSimples() {
+  void calcularJurosCompostos() {
     double capitalInicial = double.parse(_capitalController.text);
     double taxaJuros = double.parse(_jurosController.text) / 100;
     double tempo = double.parse(_tempoController.text);
-    JurosTipo tipo =
-        JurosTipo.simples(capital: capitalInicial, taxa: taxaJuros, tempo: tempo);
+    double periodo = double.parse(_periodoController.text);
+
+    JurosTipo tipo = JurosTipo.compostos(
+        capital: capitalInicial, taxa: taxaJuros, tempo: tempo, periodo: periodo);
     AppRoutes.pushNamed(context, '/result', tipo);
   }
 }
